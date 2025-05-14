@@ -1,0 +1,14 @@
+fiftyone
+tensorboard
+torch 
+torchvision   
+torchaudio 
+ultralytics
+
+
+jupyter
+notebook<7
+pandas
+numpy
+scikit-learn
+scikit-multilearn
