@@ -1,7 +1,6 @@
 import os
 import json
 from collections import defaultdict
-from util import process_annotation
 import shutil
 import yaml
 from typing import List, Dict, Any, Literal, Tuple
@@ -11,6 +10,20 @@ from skmultilearn.model_selection import iterative_train_test_split
 
 Image = Dict[str, str]
 Annotation = Dict[str, str]
+
+def process_annotation(ann: Annotation, image: Image) -> str:
+    top_x, top_y, width, height = ann['bbox']
+
+    center_x = top_x + width / 2
+    norm_center_x = center_x / image['width']
+    norm_width = width / image['width']
+
+    center_y = top_y + height / 2
+    norm_center_y = center_y / image['height']
+    norm_height = height / image['height']
+
+    yolo_format = f"{ann['category_id'] - 1} {norm_center_x} {norm_center_y} {norm_width} {norm_height}"
+    return yolo_format
 
 
 def split_images(
@@ -118,5 +131,12 @@ def from_coco_to_yolo(
 
 
 if __name__ == '__main__':
-    from_coco_to_yolo("train", "self_driving_yolo", valid_size=0.2)
+    from sdr.config import Settings
+    settings = Settings()
+    
+    from_coco_to_yolo(
+        settings.COCO_DATASET_PATH,
+        settings.YOLO_DATASET_PATH,
+        valid_size=0.2)
+
 

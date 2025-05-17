@@ -15,7 +15,7 @@ def  load_coco_dataset(dataset_dir):
 def load_yolo_dataset(dataset_dir,split):
     dataset = fo.Dataset.from_dir(dataset_type=fo.types.YOLOv5Dataset,
                                   dataset_dir=dataset_dir,
-                                  yaml_path=f"dataset.yaml",
+                                  yaml_path="dataset.yaml",
                                   split=split)
     return dataset
 

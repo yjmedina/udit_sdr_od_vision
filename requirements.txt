@@ -12,3 +12,5 @@ pandas
 numpy
 scikit-learn
 scikit-multilearn
+pydantic
+pydantic-settings
