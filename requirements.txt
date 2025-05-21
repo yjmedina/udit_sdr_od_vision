@@ -14,4 +14,5 @@ numpy
 scikit-learn
 scikit-multilearn
 pydantic
+typer
 pydantic-settings
