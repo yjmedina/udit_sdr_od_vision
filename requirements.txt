@@ -16,3 +16,5 @@ scikit-multilearn
 pydantic
 typer
 pydantic-settings
+mlflow
+tensorboard

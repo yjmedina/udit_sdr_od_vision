@@ -2,7 +2,6 @@ from ultralytics import YOLO, settings
 import os
 from typer import Typer
 
-
 cli = Typer()
 
 PATH_TO_DATASET = "data\YOLO_sdr_data\dataset.yaml"
@@ -20,6 +19,6 @@ def main(
 
 if __name__ == '__main__':
     settings.update(
-        {"tensorboard": True}
+        {"tensorboard": True, "mlflow": True}
         )
     cli()
