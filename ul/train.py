@@ -1,4 +1,4 @@
-from ultralytics import YOLO
+from ultralytics import YOLO, settings
 import os
 from typer import Typer
 
@@ -19,4 +19,7 @@ def main(
     results = model.train(data=abs_path, cfg=confpath, device=0)
 
 if __name__ == '__main__':
+    settings.update(
+        {"tensorboard": True}
+        )
     cli()
