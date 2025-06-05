@@ -26,3 +26,7 @@ if __name__ == '__main__':
         "ul/adamW_e50.yaml",
         "ul/basicAugmentation_E50.yaml",
     ]
+
+    for conf in CONFS:
+        print(conf)
+        main(conf)
