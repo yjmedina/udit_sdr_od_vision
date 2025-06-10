@@ -1,8 +1,10 @@
 from ultralytics import YOLO, settings
 import os
+import yaml
 
 PATH_TO_DATASET = "data\YOLO_sdr_data\dataset.yaml"
 
+DEFAULT_MODEL = "yolo11n.pt"
 
 def main(
         confpath: str,
@@ -10,7 +12,12 @@ def main(
 ):
     abs_path = os.path.abspath(path_to_dataset)
     assert os.path.exists(path_to_dataset)
-    model = YOLO("yolo11n.pt")  # load a pretrained model (recommended for training)
+    
+    with open(confpath) as f:
+        config: dict = yaml.safe_load(f)
+    model_name = config['model'] or DEFAULT_MODEL
+    print(model_name)
+    model = YOLO(model_name)  # load a pretrained model (recommended for training)
     _ = model.train(data=abs_path, cfg=confpath, device=0)
 
 if __name__ == '__main__':
@@ -23,8 +30,10 @@ if __name__ == '__main__':
         )
 
     CONFS = [
-        "ul/adamW_e50.yaml",
-        "ul/basicAugmentation_E50.yaml",
+        # "ul/adamW_e50.yaml",
+        # "ul/basicAugmentation_E50.yaml",
+        "ul/basicAugmentation_adamW_E50.yaml",
+        "ul/yolo11m_basicAugmentation_adamW_E50.yaml",
     ]
 
     for conf in CONFS:
